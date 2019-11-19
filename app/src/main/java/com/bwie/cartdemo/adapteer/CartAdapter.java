@@ -43,7 +43,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.VH> {
     @Override
     public void onBindViewHolder(@NonNull VH holder, int position) {
 
-        holder.nameTv.setText(categories.get(position).category);
+        holder.nameTv.setText(categories.get(position).categoryName);
         holder.rv.setLayoutManager(new LinearLayoutManager(context));
 //        holder.rv.setAdapter();
 

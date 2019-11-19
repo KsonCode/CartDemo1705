@@ -8,7 +8,7 @@ public class CartEntity {
     public List<Category> result;
 
     public static class Category{
-        public String category;
+        public String categoryName;
         public List<Shopping> shoppingCartList;
         public static class Shopping{
 
