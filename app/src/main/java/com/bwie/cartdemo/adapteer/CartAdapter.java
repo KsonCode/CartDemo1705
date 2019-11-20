@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bwie.cartdemo.R;
 import com.bwie.cartdemo.entity.CartEntity;
+import com.bwie.cartdemo.ui.CartActivity;
 
 import java.util.List;
 
@@ -32,6 +33,14 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.VH> {
         this.categories = list;
     }
 
+    /**
+     * 购物车数据
+     * @return
+     */
+    public List<CartEntity.Category> getCategories() {
+        return categories;
+    }
+
     @NonNull
     @Override
     public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -40,13 +49,47 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.VH> {
         return vh;
     }
 
+    /**
+     * 什么时候触发，首次new adapter的时候，只要list集合有数据，或者：手指滑动，或者调用adapter的notifyDataSetChanged
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(@NonNull VH holder, int position) {
 
+        if (categories.get(position).isChecked){
+            holder.checkBox.setChecked(true);
+        }else{
+            holder.checkBox.setChecked(false);
+        }
+
+
+       CartItemAdapter cartItemAdapter =  new CartItemAdapter(context,categories.get(position).shoppingCartList);
+
         holder.nameTv.setText(categories.get(position).categoryName);
         holder.rv.setLayoutManager(new LinearLayoutManager(context));
-//        holder.rv.setAdapter();
+        holder.rv.setAdapter(cartItemAdapter);
 
+        holder.checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (CartEntity.Category.Shopping shopping : categories.get(position).shoppingCartList) {
+                    if (holder.checkBox.isChecked()){
+                        shopping.isChecked = true;
+                    }else{
+                        shopping.isChecked = false;
+                    }
+
+                }
+
+                cartItemAdapter.notifyDataSetChanged();
+
+                //
+                CartActivity cartActivity = (CartActivity) context;
+                cartActivity.totalPrice();
+
+            }
+        });
     }
 
     @Override
