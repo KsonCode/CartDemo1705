@@ -69,6 +69,45 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.VH>  {
 
         });
 
+        holder.checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (holder.checkBox.isChecked()){
+                    shoppingList.get(position).isChecked = true;
+                }else{
+                    shoppingList.get(position).isChecked = false;
+                }
+
+                StringBuilder sb = new StringBuilder();
+
+                for (CartEntity.Category.Shopping shopping : shoppingList) {
+                    sb.append(shopping.isChecked+"");
+                }
+
+                System.out.println("sb===="+sb);
+                if (sb.toString().contains("false")){
+                    notifyCartAdapter.notify(false);
+                }else{
+                    notifyCartAdapter.notify(true);
+                }
+
+
+
+
+
+            }
+        });
+
+    }
+
+    private NotifyCartAdapter notifyCartAdapter;
+
+    public void setNotifyCartAdapter(NotifyCartAdapter notifyCartAdapter) {
+        this.notifyCartAdapter = notifyCartAdapter;
+    }
+
+    public interface NotifyCartAdapter{
+        void notify(boolean isChecked);
     }
 
     @Override

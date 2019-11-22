@@ -8,7 +8,7 @@ import org.greenrobot.greendao.database.Database;
 import org.greenrobot.greendao.identityscope.IdentityScopeType;
 import org.greenrobot.greendao.internal.DaoConfig;
 
-import com.bwie.cartdemo.ui.CartBean;
+import com.bwie.cartdemo.entity.CartBean;
 
 import com.bwie.cartdemo.greendao.CartBeanDao;
 

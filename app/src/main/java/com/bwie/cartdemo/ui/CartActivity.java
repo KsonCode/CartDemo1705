@@ -1,9 +1,7 @@
 package com.bwie.cartdemo.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
@@ -13,8 +11,8 @@ import com.bwie.cartdemo.RetrofitUtils;
 import com.bwie.cartdemo.adapteer.CartAdapter;
 import com.bwie.cartdemo.api.ICartApiService;
 import com.bwie.cartdemo.base.BaseActivity;
+import com.bwie.cartdemo.entity.CartBean;
 import com.bwie.cartdemo.entity.CartEntity;
-import com.bwie.cartdemo.widget.NumView;
 import com.google.gson.Gson;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
@@ -22,9 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
-import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
@@ -51,7 +47,7 @@ public class CartActivity extends BaseActivity {
         if (true){
             HashMap<String, String> headers = new HashMap<>();
             headers.put("userId", "159");
-            headers.put("sessionId", "1574135048990159");
+            headers.put("sessionId", "1574404675724159");
 
             RetrofitUtils.getInstance().createService(ICartApiService.class)
                     .getCarts(headers)

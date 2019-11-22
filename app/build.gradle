@@ -82,5 +82,3 @@ greendao {
     daoPackage 'com.bwie.cartdemo.greendao'
     targetGenDir 'src/main/java'
 }
-
-

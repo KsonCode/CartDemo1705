@@ -70,6 +70,17 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.VH> {
         holder.rv.setLayoutManager(new LinearLayoutManager(context));
         holder.rv.setAdapter(cartItemAdapter);
 
+        //初始化回调接口对象
+        cartItemAdapter.setNotifyCartAdapter(new CartItemAdapter.NotifyCartAdapter() {
+            @Override
+            public void notify(boolean isChecked) {
+//                holder.checkBox.setChecked(isChecked);
+                categories.get(position).isChecked = isChecked;
+                notifyDataSetChanged();
+                CartActivity.cartActivity.totalPrice();
+            }
+        });
+
         holder.checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,6 +107,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.VH> {
     public int getItemCount() {
         return categories.size();
     }
+
+
 
     static class VH extends RecyclerView.ViewHolder {
 

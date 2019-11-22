@@ -1,4 +1,4 @@
-package com.bwie.cartdemo.ui;
+package com.bwie.cartdemo.entity;
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
